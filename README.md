@@ -2,6 +2,14 @@
 
 Simple NodeJs Typescript starter with Jest, nodeman, ts-node, VSCode debug support.
 
+## Quickstart
+
+- Clone the repo `git clone https://github.com/vincent608/nodejs-ts-starter.git`
+- Install dependencies `npm install`
+- Build code `npm run build`
+- Run code `npm start`
+- Run test `npm test`
+
 ## Scripts and their explanation
 
 All scripts can be found inside the package.json file under the "scripts"
@@ -22,5 +30,5 @@ attribute.
 ### VSCode Debugging Code
 
 - Build code
-- Open code and set a breakpoint in /src/index.ts.
+- Open code and set breakpoints in /src/index.ts.
 - Start debugging with "Run and Debug" or F5.
