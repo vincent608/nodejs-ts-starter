@@ -1,5 +1,5 @@
 // worker.js
-const { parentPort, threadId, workerData } = require("worker_threads");
+import { parentPort, threadId, workerData } from "worker_threads";
 
 // handle data pass with postMessage from parent
 parentPort.on("message", (data) => {

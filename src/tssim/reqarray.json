@@ -1,0 +1,29 @@
+[
+{
+  "uuid": "1",
+  "portfolio": "B2K01",
+  "pan": "2222222222223333",
+  "scoreType": "A",
+  "score": "100",
+  "startDate": "2021-01-01T00:00:00Z",
+  "endDate": "2021-01-01T00:00:00Z"
+},
+{
+  "uuid": "2",
+  "portfolio": "B2K02",
+  "pan": "2222222222223334",
+  "scoreType": "B",
+  "score": "200",
+  "startDate": "2021-01-01T00:00:00Z",
+  "endDate": "2021-01-01T00:00:00Z"
+},
+{
+  "uuid": "3",
+  "portfolio": "B2K03",
+  "pan": "2222222222223335",
+  "scoreType": "C",
+  "score": "300",
+  "startDate": "2021-01-01T00:00:00Z",
+  "endDate": "2021-01-01T00:00:00Z"
+}
+]

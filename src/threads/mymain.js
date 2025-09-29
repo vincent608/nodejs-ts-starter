@@ -1,5 +1,5 @@
 // main.js
-const { Worker } = require("worker_threads");
+import { Worker } from "worker_threads";
 
 const worker = new Worker("./myworker.js");
 

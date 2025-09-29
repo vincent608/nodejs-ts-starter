@@ -1,11 +1,13 @@
 // We need this to build our post string
-var querystring = require("querystring");
-var http = require("http");
-var fs = require("fs");
+import querystring from "querystring";
+import http from "http";
+import fs from "fs";
+
+const params = new URLSearchParams("abc=123&xyz=526&abc=258"); 
 
 function PostCode(codestring) {
   // Build the post string from an object
-  var post_data = querystring.stringify({
+  const post_data = querystring.stringify({
     compilation_level: "ADVANCED_OPTIMIZATIONS",
     output_format: "json",
     output_info: "compiled_code",

@@ -1,5 +1,5 @@
 // main.js
-const { Worker } = require("worker_threads");
+import { Worker } from "worker_threads";
 
 function runWorker(data) {
   return new Promise((resolve, reject) => {

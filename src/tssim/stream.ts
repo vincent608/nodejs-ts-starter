@@ -11,7 +11,7 @@ let options: any = {
   emitClose: false,
   highWaterMark: 16,
 };
-  let reader: ReadStream = createReadStream("input.txt", options);
+let reader: ReadStream = createReadStream("input.txt", options);
 
 // Read and display the file data on console
 reader.on("data", function (chunk: any) {
@@ -21,4 +21,3 @@ reader.on("data", function (chunk: any) {
 reader.on("end", () => {
   console.log("read end");
 });
-

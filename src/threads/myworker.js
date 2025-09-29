@@ -1,5 +1,5 @@
 // worker.js
-const { parentPort } = require("worker_threads");
+import { parentPort } from "worker_threads";
 
 parentPort.on("message", (data) => {
   console.log("Worker: Received data from main thread:", data);

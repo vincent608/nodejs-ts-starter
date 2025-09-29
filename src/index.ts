@@ -1,5 +1,5 @@
 // src/index.ts
-import { add } from "./model/calculator";
+import { add } from "./model/calculator.js";
 
 console.log("Hello, TypeScript simple starter with Node.js!");
 

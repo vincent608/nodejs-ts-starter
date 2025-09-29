@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "commonjs",
+    "target": "es2021",
+    "module": "nodenext",
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist",

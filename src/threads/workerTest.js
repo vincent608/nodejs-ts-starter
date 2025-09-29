@@ -1,10 +1,10 @@
-const {
+import {
   Worker,
   isMainThread,
   parentPort,
   setEnvironmentData,
   getEnvironmentData,
-} = require("worker_threads");
+} from "worker_threads";
 
 if (isMainThread) {
     setEnvironmentData("key", "value");
