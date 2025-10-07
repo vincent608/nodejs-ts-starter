@@ -6,8 +6,6 @@ import { timestamp, hexdump } from "./util.js";
 import { RiskReq, RiskResp } from "./riskReqResp.js";
 import { Networker } from "./networker.js";
 
-const recordType = "00";
-
 let isHex = false;
 let nRun : number = 0;
 let nSend : number = 0;
@@ -40,13 +38,13 @@ const loadData = (dataFile: string) => {
 
 export const createRiskReq = (reqObj: RiskReq) => {
   reqObj.uuid = uuidv4();
-  let uuid = Buffer.from(reqObj.uuid.padEnd(36));
-  let pan = Buffer.from(reqObj.pan.padEnd(20));
-  let score = Buffer.from(reqObj.score.padEnd(3));
-  let scoreType = Buffer.from(reqObj.scoreType.padEnd(1));
-  let startDate = Buffer.from(reqObj.startDate.padEnd(20));
-  let endDate = Buffer.from(reqObj.endDate.padEnd(20));
-  let portfolio = Buffer.from(reqObj.portfolio.padEnd(14));
+  const uuid = Buffer.from(reqObj.uuid.padEnd(36));
+  const pan = Buffer.from(reqObj.pan.padEnd(20));
+  const score = Buffer.from(reqObj.score.padEnd(3));
+  const scoreType = Buffer.from(reqObj.scoreType.padEnd(1));
+  const startDate = Buffer.from(reqObj.startDate.padEnd(20));
+  const endDate = Buffer.from(reqObj.endDate.padEnd(20));
+  const portfolio = Buffer.from(reqObj.portfolio.padEnd(14));
 
   return Buffer.concat([
     uuid,
@@ -59,8 +57,8 @@ export const createRiskReq = (reqObj: RiskReq) => {
   ]);
 };
 
-export const createRiskResp = (reqObj: any) => {
-  let payload = Buffer.allocUnsafe(36 + 8);
+export const createRiskResp = (reqObj: RiskReq) => {
+  const payload = Buffer.allocUnsafe(36 + 8);
 
   Buffer.from(reqObj.uuid.padEnd(36)).copy(payload, 0);
   if (respCount > 1000) {
@@ -72,18 +70,18 @@ export const createRiskResp = (reqObj: any) => {
 };
 
 export const parseRiskResp = (dataBuf: Buffer) => {
-  let obj : RiskResp = {
+  const obj : RiskResp = {
     uuid: "",
     respCode: "",
   };
   
   let idx = 0;
 
-  let uuid = dataBuf.subarray(idx, idx + 36);
+  const uuid = dataBuf.subarray(idx, idx + 36);
   // console.log('uuid: ', uuid.toString());
   obj["uuid"] = uuid.toString();
   idx += 36;
-  let respCode = dataBuf.subarray(idx, idx + 8);
+  const respCode = dataBuf.subarray(idx, idx + 8);
   // console.log(respCode.toString());
   obj["respCode"] = respCode.toString();
 
@@ -91,7 +89,7 @@ export const parseRiskResp = (dataBuf: Buffer) => {
 };
 
 export const handleData = (networker : Networker, data: Buffer) => {
-  let respObj = parseRiskResp(data);
+  const respObj = parseRiskResp(data);
   console.log(
     timestamp() +
       "Received: " +
@@ -111,7 +109,7 @@ export const handleData = (networker : Networker, data: Buffer) => {
 
 const sendMsg = (doc: RiskReq, networker: Networker, idx: number) => {
 
-  let msg = createRiskReq(doc);
+  const msg = createRiskReq(doc);
  
   console.log(
     timestamp() + "Send: " + idx + ", len: " + msg.length
@@ -135,9 +133,9 @@ const processMsg = (docs: RiskReq[], delay: number, networker: Networker, idx: n
 
 export const handleConnect = (networker: Networker, datafile: string, delay: number, debug = false) => {
   isHex = debug;
-  let data = loadData(datafile);
+  const data = loadData(datafile);
   // console.log(JSON.stringify(data));
-  let j = 0;
+  const j = 0;
   if (Array.isArray(data)) {
     nRun = data.length;
     processMsg(data, delay, networker, j);
@@ -149,7 +147,7 @@ export const handleConnect = (networker: Networker, datafile: string, delay: num
   }
 };
 
-export const handleClose = (parentPort = undefined) => {
+export const handleClose = () => {
   console.log(timestamp() + "Send: " + nSend + ", Recv: " + nRecv);
   // if (parentPort !== undefined) {
   //   parentPort.postMessage({ send: nSend, recv: nRecv });

@@ -15,7 +15,7 @@ function watchFileLines(filePath: string, onLine: LineCallback) {
 
   stream.on("data", (chunk) => {
     buffer += chunk;
-    let lines : string[] = buffer.split("\n");
+    const lines : string[] = buffer.split("\n");
 
     // Keep last partial line in buffer
     buffer = lines.pop() ?? "";

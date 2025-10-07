@@ -50,7 +50,7 @@ if (argv.f) {
 
 console.log(`hostname: ${hostname}, port: ${port}, TLS: ${enableTls}, data: ${datafile}, delay: ${delay}, debug: ${debug}`);
 
-let socket = null;
+let socket: any = null;
 if (enableTls === true) {
   console.log("enable TLS");
   const options: tls.ConnectionOptions = {
@@ -73,7 +73,7 @@ socket.on('connect', () => {
 });
 
 socket.on('ready', () => {
-  let networker = new Networker(socket,
+  const networker = new Networker(socket,
     (data) => handleData(networker, data),
     () => handleClose());
 

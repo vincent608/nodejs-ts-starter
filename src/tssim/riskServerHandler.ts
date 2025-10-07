@@ -27,7 +27,7 @@ export const handleData = (
   data: Buffer,
   delay: number
 ) => {
-  let reqObj = parseRiskReq(data);
+  const reqObj = parseRiskReq(data);
   console.log(
     timestamp() + "Received: len: " + data.length + ", uuid: " + reqObj.uuid
   );
@@ -36,7 +36,7 @@ export const handleData = (
     console.log(JSON.stringify(reqObj, null, 2));
   }
 
-  let resp = createRiskResp(reqObj);
+  const resp = createRiskResp(reqObj);
   console.log(timestamp() + "Response: len: " + resp.length);
   if (isHex) {
     console.log(hexdump(resp.toString()));
@@ -45,7 +45,7 @@ export const handleData = (
 };
 
 export const parseRiskReq = (dataBuf: Buffer): RiskReq => {
-  let obj: RiskReq = {
+  const obj: RiskReq = {
     uuid: "",
     pan: "",
     score: "",
@@ -56,31 +56,31 @@ export const parseRiskReq = (dataBuf: Buffer): RiskReq => {
   };
   let idx = 0;
 
-  let uuid = dataBuf.subarray(idx, idx + 36);
+  const uuid = dataBuf.subarray(idx, idx + 36);
   // console.log('uuid: ', uuid.toString());
   obj["uuid"] = uuid.toString();
   idx += 36;
-  let pan = dataBuf.subarray(idx, idx + 20);
+  const pan = dataBuf.subarray(idx, idx + 20);
   // console.log(pan.toString());
   obj["pan"] = pan.toString();
   idx += 20;
   // console.log(pan.toString());
-  let score = dataBuf.subarray(idx, idx + 3);
+  const score = dataBuf.subarray(idx, idx + 3);
   obj["score"] = score.toString();
   idx += 3;
-  let scoreType = dataBuf.subarray(idx, idx + 1);
+  const scoreType = dataBuf.subarray(idx, idx + 1);
   obj["scoreType"] = scoreType.toString();
   idx += 1;
 
-  let startDate = dataBuf.subarray(idx, idx + 20);
+  const startDate = dataBuf.subarray(idx, idx + 20);
   obj["startDate"] = startDate.toString();
   idx += 20;
 
-  let endDate = dataBuf.subarray(idx, idx + 20);
+  const endDate = dataBuf.subarray(idx, idx + 20);
   obj["endDate"] = endDate.toString();
   idx += 20;
 
-  let portfolio = dataBuf.subarray(idx, idx + 14);
+  const portfolio = dataBuf.subarray(idx, idx + 14);
   obj["portfolio"] = portfolio.toString();
   idx += 14;
 
@@ -88,7 +88,7 @@ export const parseRiskReq = (dataBuf: Buffer): RiskReq => {
 };
 
 export const createRiskResp = (reqObj: RiskReq) => {
-  let payload = Buffer.allocUnsafe(36 + 8);
+  const payload = Buffer.allocUnsafe(36 + 8);
 
   Buffer.from(reqObj.uuid.padEnd(36)).copy(payload as Uint8Array, 0);
   if (respCount > 1000) {

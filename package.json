@@ -1,9 +1,9 @@
 {
   "name": "nodejs-ts-starter",
-  "type": "module",
   "version": "1.0.0",
   "description": "NodeJs typescript simple starter",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "bw": "tsc -w",

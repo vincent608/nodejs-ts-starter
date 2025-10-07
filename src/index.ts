@@ -4,7 +4,7 @@ import { add } from "./model/calculator.js";
 console.log("Hello, TypeScript simple starter with Node.js!");
 
 // to debug, set breakpoint here
-let sum: number = add(2, 3);
+const sum: number = add(2, 3);
 
 console.log(`Sum: ${sum}`);
 

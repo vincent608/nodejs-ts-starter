@@ -60,7 +60,7 @@ export class Networker {
   }
 
   public send(message: string): void {
-    let buffer = Buffer.from(message);
+    const buffer = Buffer.from(message);
     this.header(buffer.length);
     this.packet.message = buffer;
     this.write();
@@ -139,7 +139,7 @@ export class Networker {
   private getPayload() {
     if (this.hasEnough(this.payloadLength)) {
       if (this.payloadLength > 0) {
-        let received = this.readBytes(this.payloadLength);
+        const received = this.readBytes(this.payloadLength);
         this.socket.emit("served", received);
       }
       this.state = "HEADER";
@@ -164,18 +164,18 @@ export class Networker {
   }
 
   private write(): void {
-    let contentLength: Buffer = Buffer.allocUnsafe(2);
+    const contentLength: Buffer = Buffer.allocUnsafe(2);
     if (this.packet.header && typeof this.packet.header.length === "number") {
       contentLength.writeUInt16BE(this.packet.header.length);
     } else {
       throw new Error("Packet header is undefined or missing length");
     }
     debug("write... " + JSON.stringify(this.packet));
-    this.socket.write(new Uint8Array(contentLength), (err?: Error) => {});
+    this.socket.write(new Uint8Array(contentLength), (err: any) => { console.log(err) });
     if (this.packet.message) {
       this.socket.write(
         new Uint8Array(this.packet.message),
-        (err?: Error) => {}
+        (err: any) => { console.log(err) }
       );
     }
     this.packet = {};

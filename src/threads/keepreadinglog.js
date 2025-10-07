@@ -33,7 +33,7 @@ function checkForNewContent() {
             const json = JSON.parse(message);
             console.log(JSON.stringify(json, null, 2));
           } catch(e) {
-            console.error("json parse error");
+            console.error("json parse error: ", e);
           }
         } else {
           // console.log("Not match content: ", line);

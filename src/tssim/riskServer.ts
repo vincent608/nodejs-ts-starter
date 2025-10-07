@@ -51,7 +51,7 @@ if (enableTls == true) {
 server.on(connectionEvent, (socket) => {
   socket.id = uuidv4();
 
-  let networker = new Networker(
+  const networker = new Networker(
     socket,
     (data) => {
       handleData(networker, data, 0);
